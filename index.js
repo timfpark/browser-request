@@ -251,9 +251,10 @@ request.defaults = function(options, requester) {
 // HTTP method shortcuts
 //
 
-var shortcuts = [ 'get', 'put', 'post', 'head' ];
+var shortcuts = [ 'get', 'put', 'post', 'head', 'del' ];
+var shortcutToMethod = { 'del' : 'DELETE' };
 shortcuts.forEach(function(shortcut) {
-  var method = shortcut.toUpperCase();
+  var method = shortcutToMethod[shortcut] || shortcut.toUpperCase();
   var func   = shortcut.toLowerCase();
 
   request[func] = function(opts) {
